@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanCity Laundry | Fresh. Clean. Reliable.</title>
+    <style>
+        /* CSS RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* SHADES OF BLUE & WHITE PALETTE */
+        :root {
+            --navy-blue: #092c5c;
+            --vibrant-blue: #0066cc;
+            --sky-blue: #e6f2ff;
+            --ice-blue: #f4f8fc;
+            --white: #ffffff;
+            --dark-gray: #333;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3 { color: var(--navy-blue); }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* KEYFRAME ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gentlePulse {
+            0% { transform: scale(1); box-shadow: 0 4px 6px rgba(0, 102, 204, 0.15); }
+            50% { transform: scale(1.03); box-shadow: 0 6px 16px rgba(0, 102, 204, 0.3); }
+            100% { transform: scale(1); box-shadow: 0 4px 6px rgba(0, 102, 204, 0.15); }
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            background-color: var(--vibrant-blue);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0, 92, 230, 0.15);
+        }
+        .btn:hover {
+            background-color: #004ea3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 92, 230, 0.25);
+        }
+
+        /* HEADER / NAV */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--sky-blue);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 12px; }
+        .logo-img { height: 60px; width: auto; object-fit: contain; }
+        .logo-text { display: flex; flex-direction: column; line-height: 1; }
+        .logo-main { font-size: 1.8rem; font-weight: 900; color: var(--navy-blue); text-transform: uppercase; letter-spacing: 1px; }
+        .logo-sub { font-size: 0.9rem; font-weight: 600; color: var(--vibrant-blue); text-transform: uppercase; letter-spacing: 6px; border-top: 2px solid var(--vibrant-blue); margin-top: 3px; padding-top: 3px; }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { font-weight: 700; color: var(--navy-blue); text-transform: uppercase; font-size: 0.9rem; transition: color 0.2s ease; }
+        .nav-links a:hover { color: var(--vibrant-blue); }
+        .nav-links a.active { color: var(--vibrant-blue); border-bottom: 2px solid var(--vibrant-blue); padding-bottom: 5px; }
+
+        /* HERO SECTION WITH BACKGROUND IMAGE & OVERLAY */
+        .hero { 
+            background-image: linear-gradient(rgba(244, 248, 252, 0.85), rgba(244, 248, 252, 0.85)), url('laundry-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 110px 20px; 
+            text-align: center; 
+            border-bottom: 1px solid var(--sky-blue); 
+        }
+        
+        .hero h1 { 
+            font-size: 3.5rem; 
+            margin-bottom: 10px; 
+            font-weight: 900; 
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .hero .tagline { 
+            font-family: 'Brush Script MT', cursive, sans-serif; 
+            font-size: 2.5rem; 
+            color: var(--vibrant-blue); 
+            margin-bottom: 30px; 
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero .btn {
+            animation: gentlePulse 3s infinite ease-in-out;
+        }
+
+        /* PROMO BANNER */
+        .promo-banner { background-color: var(--sky-blue); text-align: center; padding: 18px; color: var(--navy-blue); font-size: 1.5rem; font-weight: 900; display: flex; align-items: center; justify-content: center; gap: 15px; text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .promo-banner .sub-text { font-size: 1rem; font-weight: 500; text-transform: none; display: block; color: #4a6b94; margin-top: 2px; }
+
+        /* FEATURES SECTION */
+        .features-section { padding: 70px 0; background-color: var(--white); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+        
+        .feature-item {
+            transition: transform 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        .feature-item .icon { font-size: 2.5rem; color: var(--vibrant-blue); margin-bottom: 10px; }
+        .feature-item h4 { font-size: 1.1rem; text-transform: uppercase; color: var(--navy-blue); font-weight: 800; }
+
+        /* FOOTER */
+        footer { background-color: var(--navy-blue); color: var(--white); text-align: center; padding: 40px 20px; border-top: 5px solid var(--vibrant-blue); }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .tagline { font-size: 2rem; }
+            .promo-banner { flex-direction: column; font-size: 1.2rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="index.html" class="logo-container">
+                <img src="logo.jpeg" alt="CleanCity Laundry Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main">CleanCity</span>
+                    <span class="logo-sub">Laundry</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services & Pricing</a></li>
+            </ul>
+            <a href="https://wa.me/254758958470" class="btn" target="_blank">Call or WhatsApp</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Fresh. Clean. Reliable.</h1>
+            <div class="tagline">Clean Living Starts with Cleancity</div>
+            <a href="services.html" class="btn" style="font-size: 1.1rem; padding: 16px 40px;">View Our Services</a>
+        </div>
+    </section>
+
+    
+
+    <section class="features-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">The CleanCity Standard</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="icon">⏱️</div>
+                    <h4>Fast Turnaround</h4>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">💲</div>
+                    <h4>Affordable Prices</h4>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🛡️</div>
+                    <h4>Professional Care</h4>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🤝</div>
+                    <h4>Reliable & Trusted</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 5px;">CleanCity Laundry</h2>
+            <p style="color: #cbd5e1;">Chuka University</p>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #94a3b8;">&copy; 2026 CleanCity Laundry. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
